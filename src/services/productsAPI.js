@@ -1,11 +1,13 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3001/api/products/';
+const API_URL_PRODUCTS = 'http://localhost:3001/api/products/';
 
 export function fetchProducts() {
-  return axios.get(API_URL).then((res) => res.data);
+  return axios.get(API_URL_PRODUCTS).then((res) => res.data);
 }
 
-//  axios.get(apiUrl).then((resp) => {
-//       const allPersons = resp.data;
-//       setAppState(allPersons);
+const API_URL_CATEGORY = 'http://localhost:3001/api/product/categories/';
+
+export function fetchCategories() {
+  return axios.get(API_URL_CATEGORY).then((res) => res.data);
+}

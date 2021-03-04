@@ -1,18 +1,11 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
-import { fetchProducts } from '../../services/productsAPI';
+import { useContext } from 'react';
 import ProductsList from '../../components/ProductsList/ProductsList';
+import { ProductContext } from '../../context/ProductContext';
 
 function ProductsView() {
-  const [products, setProducts] = useState([]);
-  //   //   const [error, setError] = useState(null);
+  const { products } = useContext(ProductContext);
 
-  useEffect(() => {
-    fetchProducts().then((res) => {
-      setProducts(res);
-      console.log(res);
-    });
-  }, []);
   return (
     <div>
       <h1>Products</h1>
