@@ -10,30 +10,32 @@ export const ProductContext = React.createContext({
 
 export default (props) => {
   const [productsList, setProductsList] = useState([]);
+  const [cartProductList, setCartProductList] = useState({});
 
   useEffect(() => {
     fetchProducts().then((res) => {
       setProductsList(res);
-      console.log(res);
+      // console.log(res);
     });
   }, []);
 
-  const addToCart = (productId) => {
-    console.log(productId);
-    setProductsList((currentProductList) => {
-      const prodIndex = currentProductList.findIndex((p) => p.id === productId);
-      const newStatus = !currentProductList[prodIndex].isCartItem;
-      const updatedProduct = [...productsList];
-      updatedProduct[prodIndex] = {
-        ...currentProductList[prodIndex],
-        isCartItem: newStatus,
-      };
-      return updatedProduct;
-    });
+  const addToCart = (id) => {
+    if (cartProductList[id]) {
+      setCartProductList({ ...cartProductList, [id]: cartProductList[id] + 1 });
+    } else {
+      setCartProductList({ ...cartProductList, [id]: 1 });
+    }
+  };
+  const removeToCart = (id) => {
+    if (cartProductList[id]) {
+      setCartProductList({ ...cartProductList, [id]: cartProductList[id] - 1 });
+    }
   };
   return (
-    <ProductContext.Provider value={{ products: productsList, toggleCart: addToCart, fetchProducts, setProductsList }}>
-      {props.children}
+    <ProductContext.Provider
+      value={{ products: productsList, removeToCart, addToCart, fetchProducts, setProductsList, cartProductList }}
+    >
+      {props.children},
     </ProductContext.Provider>
   );
 };

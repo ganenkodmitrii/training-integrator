@@ -1,11 +1,12 @@
 import React from 'react';
-// import { ProductContext } from '../../context/ProductContext';
-// import { useState, useEffect } from 'react';
+import { ProductContext } from '../../context/ProductContext';
+import { useContext } from 'react';
 // import SortPrice from '../SortPrice/SortPrice';
 import s from './ProductsList.module.css';
 
 function ProductsList({ products }) {
-  // console.log(ProductContext);
+  const { addToCart, removeToCart, cartProductList } = useContext(ProductContext);
+
   return (
     <div>
       {products.length ? (
@@ -20,6 +21,7 @@ function ProductsList({ products }) {
                 </select>
               </th>
               <th>name</th>
+              <th>quantity</th>
               <th>
                 {/* <SortPrice price={sortOptions}  onChange={onSortOrderChange}  value={sortOrder} /> */}
                 <select>
@@ -29,7 +31,6 @@ function ProductsList({ products }) {
                 </select>
               </th>
               <th>action</th>
-              <th>add to cart</th>
             </tr>
           </thead>
           <tbody className={s.tbody}>
@@ -37,12 +38,25 @@ function ProductsList({ products }) {
               <tr className={s.list} key={el.id}>
                 <td>{el.category.name}</td>
                 <td>{el.name}</td>
+                {!cartProductList[el.id] ? <td>0</td> : <td>{cartProductList[el.id]}</td>}
                 <td>{el.price}</td>
                 <td>
-                  <button>(-)</button>Select<button>(+)</button>
-                </td>
-                <td>
-                  <button>add</button>
+                  <button
+                    onClick={() => {
+                      addToCart(el.id);
+                    }}
+                  >
+                    (+)Select
+                  </button>
+                  <button
+                    onClick={() => {
+                      removeToCart(el.id);
+                    }}
+                  >
+                    Remove(-)
+                  </button>
+                  <button></button>
+                  <button></button>
                 </td>
               </tr>
             ))}
