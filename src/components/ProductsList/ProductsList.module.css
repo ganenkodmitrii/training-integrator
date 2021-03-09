@@ -28,3 +28,25 @@ th {
 td {
   padding: 5px;
 }
+
+thead button {
+  border: 0;
+  /* background-color: blueviolet; */
+  font-family: inherit;
+  font-weight: 700;
+  font-size: inherit;
+  padding: 0.5em;
+  margin-bottom: 1px;
+}
+
+button.ascending::after {
+  content: '↓';
+  display: inline-block;
+  margin-left: 2px;
+}
+
+button.descending::after {
+  content: '↑';
+  display: inline-block;
+  margin-left: 2px;
+}

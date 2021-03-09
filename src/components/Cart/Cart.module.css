@@ -1,0 +1,30 @@
+.transaction {
+  display: table;
+  width: 700px;
+  margin: 0 auto;
+  padding: 0;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: honeydew;
+}
+
+.thead {
+  background-color: deepskyblue;
+  color: honeydew;
+}
+
+th {
+  padding: 5px;
+}
+
+.tbody {
+  color: #545454;
+}
+
+.list:nth-child(2n) {
+  background-color: #c1fefe;
+}
+
+td {
+  padding: 5px;
+}

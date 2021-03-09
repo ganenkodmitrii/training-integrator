@@ -9,8 +9,8 @@ const Navigation = () => (
       Products
     </NavLink>
 
-    <NavLink to="/my-products" className={s.link} activeClassName={s.activeLink}>
-      My Products
+    <NavLink to="/cart" className={s.link} activeClassName={s.activeLink}>
+      Cart
     </NavLink>
   </nav>
 );

@@ -1,22 +1,55 @@
-import React, { useContext } from 'react';
-// import { ProductContext } from '../../context/ProductContext';
+import React from 'react';
+import { ProductContext } from '../../context/ProductContext';
+import { useContext } from 'react';
+import s from './Cart.module.css';
 
-const Cart = (products) => {
+function Cart() {
+  const { products, addToCart, removeToCart, cartProductList } = useContext(ProductContext);
+
   return (
-    <React.Fragment>
-      <h3>Cart Item</h3>
-      <nav>
-        <ul>
-          {/* {cartItems.map((item) => (
-            <li key={item.id}>
-              <h5>{item.title} :<span>$ {item.price}</span></h5>
-            </li>
-          ))} */}
-        </ul>
-        {/* <h5>Total :{totalAmount}</h5> */}
-      </nav>
-    </React.Fragment>
+    <div>
+      {Object.keys(cartProductList).length ? (
+        <table className={s.transaction}>
+          <thead className={s.thead}>
+            <tr>
+              <th>category</th>
+              <th>name</th>
+              <th>quantity</th>
+              <th>price</th>
+              <th>action</th>
+            </tr>
+          </thead>
+          <tbody className={s.tbody}>
+            {Object.keys(cartProductList).map((id) => (
+              <tr className={s.list} key={id}>
+                <td>{products[id].category.name}</td>
+                <td>{products[id].name}</td>
+                {!cartProductList[id] ? <td>0</td> : <td>{cartProductList[id]}</td>}
+                <td>{products[id].price}</td>
+                <td>
+                  <button
+                    onClick={() => {
+                      addToCart(id);
+                    }}
+                  >
+                    (+)Select
+                  </button>
+                  <button
+                    onClick={() => {
+                      removeToCart(id);
+                    }}
+                  >
+                    Remove(-)
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <p style={{ textAlign: 'center' }}>Нет данных.</p>
+      )}
+    </div>
   );
-};
-
+}
 export default Cart;

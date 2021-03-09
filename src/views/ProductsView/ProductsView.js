@@ -1,14 +1,11 @@
-import React, { useContext } from 'react';
-import { ProductContext } from '../../context/ProductContext';
+import React from 'react';
 import ProductsList from '../../components/ProductsList/ProductsList';
 
 function ProductsView() {
-  const { products } = useContext(ProductContext);
-
   return (
     <div>
-      <h1>Products</h1>
-      <ProductsList products={products} />
+      <h1 style={{ textAlign: 'center' }}>Products</h1>
+      <ProductsList />
     </div>
   );
 }

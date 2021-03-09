@@ -30,12 +30,18 @@ export default (props) => {
     if (cartProductList[id]) {
       setCartProductList({ ...cartProductList, [id]: cartProductList[id] - 1 });
     }
+    if (cartProductList[id] === 1) {
+      delete cartProductList[id];
+      setCartProductList({ ...cartProductList });
+      // const { [id]: productToRemove, ...filterAddCartProductList } = cartProductList;
+      // setCartProductList({ ...filterAddCartProductList });
+    }
   };
   return (
     <ProductContext.Provider
       value={{ products: productsList, removeToCart, addToCart, fetchProducts, setProductsList, cartProductList }}
     >
-      {props.children},
+      {props.children}
     </ProductContext.Provider>
   );
 };
