@@ -3,7 +3,6 @@ import { fetchProducts } from '../services/productsAPI';
 
 export const ProductContext = React.createContext({
   products: [],
-  toggleCart: () => {},
   fetchProducts: () => {},
   setProductsList: () => {},
 });
@@ -26,7 +25,7 @@ export default (props) => {
       setCartProductList({ ...cartProductList, [id]: 1 });
     }
   };
-  const removeToCart = (id) => {
+  const removeFromCart = (id) => {
     if (cartProductList[id]) {
       setCartProductList({ ...cartProductList, [id]: cartProductList[id] - 1 });
     }
@@ -39,7 +38,7 @@ export default (props) => {
   };
   return (
     <ProductContext.Provider
-      value={{ products: productsList, removeToCart, addToCart, fetchProducts, setProductsList, cartProductList }}
+      value={{ products: productsList, addToCart, removeFromCart, fetchProducts, setProductsList, cartProductList }}
     >
       {props.children}
     </ProductContext.Provider>

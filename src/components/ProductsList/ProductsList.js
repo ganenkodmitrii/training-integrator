@@ -5,7 +5,7 @@ import useSortableData from './useSortableData';
 import s from './ProductsList.module.css';
 
 function ProductsList() {
-  const { products, addToCart, removeToCart } = useContext(ProductContext);
+  const { products, addToCart, removeFromCart } = useContext(ProductContext);
 
   const { items, requestSort, sortConfig } = useSortableData(products);
 
@@ -52,7 +52,7 @@ function ProductsList() {
                   </button>
                   <button
                     onClick={() => {
-                      removeToCart(el.id);
+                      removeFromCart(el.id);
                     }}
                   >
                     Remove(-)

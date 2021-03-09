@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import s from './Cart.module.css';
 
 function Cart() {
-  const { products, addToCart, removeToCart, cartProductList } = useContext(ProductContext);
+  const { products, addToCart, removeFromCart, cartProductList } = useContext(ProductContext);
 
   return (
     <div>
@@ -36,7 +36,7 @@ function Cart() {
                   </button>
                   <button
                     onClick={() => {
-                      removeToCart(id);
+                      removeFromCart(id);
                     }}
                   >
                     Remove(-)
